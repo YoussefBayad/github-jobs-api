@@ -1,11 +1,13 @@
-import React from 'react';
-import { Card, Badge } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Card, Badge, Button, Collapse } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
 const Job = ({ job }) => {
+  const [open, setOpen] = useState(false);
+  const [word, setWord] = useState('View Details');
   return (
     <Card>
-      <div className="display-flex justify-content-between">
-        <div>
+      <div className="d-flex justify-content-between">
+        <div className="p-2">
           <Card.Title>
             {job.title} -{' '}
             <span className="text-muted font-weight-light">{job.company}</span>
@@ -23,12 +25,30 @@ const Job = ({ job }) => {
         </div>
         <div>
           <img
-            className="D-sm-none d-md-block"
+            className="d-sm-none d-md-block"
+            height="50"
             alt={job.company}
             src={job.company_logo}
           />
         </div>
       </div>
+      <Card.Text>
+        <Button
+          className="ml-2"
+          onClick={() => {
+            setOpen((prevOpen) => !prevOpen);
+            setWord(word === 'View Details' ? 'Hide Details' : 'View Details');
+          }}
+          variant="primary"
+        >
+          {word}
+        </Button>
+      </Card.Text>
+      <Collapse in={open}>
+        <div className="mt-4">
+          <ReactMarkdown source={job.description} />
+        </div>
+      </Collapse>
     </Card>
   );
 };

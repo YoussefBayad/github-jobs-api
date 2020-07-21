@@ -10,7 +10,7 @@ function App() {
     <Container>
       {loading && <h1>Loading...</h1>}
       {error && <h1>Failed reload </h1>}
-      {jobs.length > 0 && job.map((job) => <Job key={job.id} job={job} />)}
+      {jobs.length > 0 && jobs.map((job) => <Job key={job.id} job={job} />)}
     </Container>
   );
 }
