@@ -3,7 +3,6 @@ import { Card, Badge, Button, Collapse } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
 const Job = ({ job }) => {
   const [open, setOpen] = useState(false);
-  const [word, setWord] = useState('View Details');
   return (
     <Card className="mb-3">
       <div className="d-flex justify-content-between">
@@ -42,7 +41,7 @@ const Job = ({ job }) => {
         </Button>
       </Card.Text>
       <Collapse in={open}>
-        <div className="mt-4">
+        <div className="mt-4 p-2">
           <ReactMarkdown source={job.description} />
         </div>
       </Collapse>
